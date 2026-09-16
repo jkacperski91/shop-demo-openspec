@@ -1,0 +1,103 @@
+:root {
+  --text: #2b2b33;
+  --bg: #ffffff;
+  --border: #e2e2e6;
+  --accent: #6d28d9;
+  --danger: #c22a2a;
+  --success: #1a7f37;
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e5e5ea;
+    --bg: #17171b;
+    --border: #33333a;
+    --accent: #c4b5fd;
+    --danger: #ff8080;
+    --success: #6bd38c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+nav {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a.active {
+  color: var(--accent);
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.form-success {
+  color: var(--success);
+  font-weight: 500;
+}
+
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

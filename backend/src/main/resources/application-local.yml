@@ -1,0 +1,28 @@
+# Local development configuration.
+# Points at the PostgreSQL instance provisioned by the repo-root
+# docker-compose.yml (see the `db` service). Credentials here are
+# fixed, non-secret local-dev defaults - never reused in any deployed
+# environment.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/shopdemo
+    username: shopdemo
+    password: shopdemo
+    hikari:
+      # Let the application start even if the database is not reachable
+      # yet; connection attempts are then made lazily per-request. This is
+      # what allows the health endpoint to report a "down" database
+      # component instead of the application failing to start outright.
+      initialization-fail-timeout: -1
+      # Fail fast (default is 30s) so the health endpoint reports a "down"
+      # database promptly instead of appearing to hang.
+      connection-timeout: 3000
+  jpa:
+    # Set explicitly so Hibernate doesn't need a live JDBC connection at
+    # startup to auto-detect the dialect - required for the app to start
+    # cleanly even while the database is unreachable (see hikari setting
+    # above).
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    open-in-view: false

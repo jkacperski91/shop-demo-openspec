@@ -1,0 +1,22 @@
+# Common configuration shared by every environment.
+# Environment-specific settings (starting with database connection details)
+# live in application-<profile>.yml, selected via the active Spring profile.
+# No profile is expected to be active yet for anything beyond local
+# development, so "local" is used when none is explicitly set.
+spring:
+  application:
+    name: backend
+  profiles:
+    default: local
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
