@@ -1,24 +1,14 @@
-import { createRoute } from '@tanstack/react-router'
+import { createRoute, redirect } from '@tanstack/react-router'
 import { rootRoute } from './root-route'
 
 /**
- * Landing route ("/"). Satisfies the frontend-foundation spec's
- * "application loads and renders a landing view" requirement.
+ * Root route ("/"). Redirects to the product listing view, which is the
+ * application's effective home now that the admin shell is in place.
  */
 export const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: IndexPage,
+  beforeLoad: () => {
+    throw redirect({ to: '/products' })
+  },
 })
-
-function IndexPage() {
-  return (
-    <section>
-      <h1>Shop Demo</h1>
-      <p>
-        This is the foundation shell for the shop demo application - no shop features yet, just the
-        technology stack wired together.
-      </p>
-    </section>
-  )
-}
